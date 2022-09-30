@@ -12,10 +12,10 @@ class IrModelAccess(models.Model):
     @tools.ormcache_context('self._uid', 'model', 'mode', 'raise_exception', keys=('lang',))
     def check(self, model, mode='read', raise_exception=True):
         """
-        Inherit Check method to create a Readonly User
+        Inherit Check method to create a Read only User
         """
         ret = super(IrModelAccess, self).check(model, mode, raise_exception=raise_exception)
-        if self.check_groups('readonly_user_group.group_simple_readonly_user'):
+        if self.check_groups('readonly_user_group.group_readonly_user'):
             if mode != 'read':
                 return False
         return ret
